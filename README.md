@@ -7,6 +7,7 @@ This guide is mainly focused on how to use Grid5000 as an alternative to process
 There are two main types of accounts:
  - **Academics from France**: Those currently working on any research project in France or Academics abroad working on a collaboration with academics in France (_The former need to ask to their french collaborators for details_).
  - **Open Access Program**: People who are not on a collaboration can request a lower priority account. Private companies interested need to contact Gird5000's executive committee members.
+
 **For this part you will need to give your ssh public key. If you have not generated one, [follow this tutorial to generate one](https://www.grid5000.fr/w/SSH#Overview)**
 
 ## Second step: Choose a cluster to work in
