@@ -53,6 +53,8 @@ conda create --name env
 And install conda supported libraries and packages via [Anaconda Cloud](https://anaconda.org/anaconda/), [Conda Forge](https://anaconda.org/conda-forge/) or any other channel you want.
 
 ## Fourth step: Ask for compute time on the GPU clusters
+You can check [here](https://www.grid5000.fr/w/Status) the status of each of the clusters' availability, to see if your desired hardware is busy or not.
+
 [These bash scripts](https://github.com/manueldiaz96/usingGrid5000/tree/master/ask_for_job_scripts) facilitate the process of asking for jobs. Both are mainly using on the `oarsub` commands and using the **_default_** queue, check the [hardware wiki page](https://www.grid5000.fr/w/Hardware) to which queue the GPUs you are going to use are in:
  - `ask_for_job_fixed_time.sh` has a fixed job time, can be used to quickly test if the environment recognizes the cluster's GPUs
  - `ask_for_job_input_time.sh` lets you input time as an argument in the format _hh:mm:ss_. Can be used e.g. when you have an estimated train time for a network. 
