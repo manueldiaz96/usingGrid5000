@@ -61,7 +61,7 @@ You can check [here](https://www.grid5000.fr/w/Status) the status of each of the
  
 For example, using the `ask_for_job_input_time.sh`:
 ```bash
-user@flille:~$ bash ask_for_job_scripts/ask_for_job2.sh 00:05:00
+user@flille:~$ bash ask_for_job_scripts/ask_for_job_input_time.sh 00:05:00
  Remember to source bashrc!
  Remember to activate the conda env!
 [ADMISSION RULE] Modify resource description with type constraints
@@ -81,6 +81,12 @@ GeForce GTX 1080 Ti detected on device 1
 (pytorch_env) user@chifflet-6:~$ #GPUs detected!
 ```
 Once you are in a job, you can use the available hardware on that specific cluster for your computations.
+
+### Ask for an specific GPU (NOT WORKING)
+Since some clusters have more than one type of GPU, using the [ask_for_job_input_time_and_gpu.sh](https://github.com/manueldiaz96/usingGrid5000/blob/master/ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh) you can ask for a specific GPU on a cluster. This script takes as first argument the time in _hh:mm:ss_ format, and as second argument the wanted GPU name in 'quotes'. The names can be consulted in the OAR Properties on the Monika page of each site at the [status page of G5000](https://www.grid5000.fr/w/Status)(login needed).
+```
+user@fnancy:~$ bash ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh 00:05:00 'GTX 980'
+```
 
 ## Other useful commands
 To transfer a file from the machines to your local PC via secure copy:
