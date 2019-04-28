@@ -12,14 +12,14 @@ There are two main types of accounts:
 ## Second step: Choose a cluster to work in
 [This is a list of all the hardware available on Grid5000](https://www.grid5000.fr/w/Hardware). Check the list to know which cluster better suits your needs. At the moment of creation of this guide, these were the clusters with CUDA capable GPUs:
 
-| Site          | Cluster        | Available GPUs                                  |
-|:-------------:|:--------------:|:-----------------------------------------------:|
-| Lille         | chifflet       | Nvidia GTX 1080Ti x 2                           |
-| Lille         | chifflot       | Nvidia Tesla P100 x 2 and Nvidia Tesla V100 x 2 |
-| Lyon          | orion          | Nvidia Tesla M2075                              |
-| Nancy         | graphique      | Nvidia Titan Black x 2 and Nvidia GTX 980 x 2   |
-| Nancy         | grele          | Nvidia GTX 1080Ti x 2                           |
-| Nancy         | grimani        | Nvidia Tesla K40M                               |
+| Site          | Cluster        | Available GPUs                                  | Queue      |
+|:-------------:|:--------------:|:-----------------------------------------------:|:----------:|
+| Lille         | chifflet       | Nvidia GTX 1080Ti x 2                           | default    |
+| Lille         | chifflot       | Nvidia Tesla P100 x 2 and Nvidia Tesla V100 x 2 | default    |
+| Lyon          | orion          | Nvidia Tesla M2075                              | default    |
+| Nancy         | graphique      | Nvidia Titan Black x 2 and Nvidia GTX 980 x 2   | production |
+| Nancy         | grele          | Nvidia GTX 1080Ti x 2                           | production |
+| Nancy         | grimani        | Nvidia Tesla K40M                               | default    |
 
 Once you have chosen a cluster, you can log in into your account via: `ssh username@access.grid5000.fr`, to then ssh to the site that has the cluster you want to work in, e.g. `ssh nancy / ssh lille / ssh lyon`. Now you should be able to access your home directory on any of the Grid5000's clusters.
 
@@ -55,13 +55,13 @@ And install conda supported libraries and packages via [Anaconda Cloud](https://
 ## Fourth step: Ask for compute time on the GPU clusters
 You can check [here](https://www.grid5000.fr/w/Status) the status of each of the clusters' availability, to see if your desired hardware is busy or not.
 
-[These bash scripts](https://github.com/manueldiaz96/usingGrid5000/tree/master/ask_for_job_scripts) facilitate the process of asking for jobs. Both are mainly using on the `oarsub` commands and using the **_default_** queue, check the [hardware wiki page](https://www.grid5000.fr/w/Hardware) to which queue the GPUs you are going to use are in:
+[These bash scripts](https://github.com/manueldiaz96/usingGrid5000/tree/master/ask_for_job_scripts) facilitate the process of asking for jobs. Both are mainly using on the `oarsub` commands and using the **_default_** queue, check the node's hardware table to see which queue the GPUs you want to use are in:
  - `ask_for_job_fixed_time.sh` has a fixed job time, can be used to quickly test if the environment recognizes the cluster's GPUs
  - `ask_for_job_input_time.sh` lets you input time as an argument in the format _hh:mm:ss_. Can be used e.g. when you have an estimated train time for a network. 
  
 For example, using the `ask_for_job_input_time.sh`:
 ```bash
-user@flille:~$ bash ask_for_job_scripts/ask_for_job2.sh 00:05:00
+user@flille:~$ bash ask_for_job_scripts/ask_for_job_input_time.sh 00:05:00
  Remember to source bashrc!
  Remember to activate the conda env!
 [ADMISSION RULE] Modify resource description with type constraints
@@ -81,6 +81,31 @@ GeForce GTX 1080 Ti detected on device 1
 (pytorch_env) user@chifflet-6:~$ #GPUs detected!
 ```
 Once you are in a job, you can use the available hardware on that specific cluster for your computations.
+
+### Ask for an specific GPU 
+Since some clusters have more than one type of GPU, using the [ask_for_job_input_time_and_gpu.sh](https://github.com/manueldiaz96/usingGrid5000/blob/master/ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh) you can ask for a specific GPU on a cluster. This script takes as first argument the time in _hh:mm:ss_ format, and as second argument the wanted GPU name in 'quotes'. The names can be consulted in the OAR Properties on the Monika page of each site at the [status page of G5000](https://www.grid5000.fr/w/Status)(login needed).
+```bash
+user@fnancy:~/usingGrid5000$ bash ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh 00:05:00 'GTX 980'
+ Remember to source bashrc!
+ Remember to activate the conda env!
+ Asking for job with GTX 980 
+[ADMISSION RULE] Modify resource description with type constraints
+[ADMISSION RULE] Assign max_walltime property for production resources selection
+[ADMISSION_RULE] Resources properties : \{'resources' => [{'value' => '1','resource' => 'host'}],'property' => '((type = \'default\') AND production = \'YES\') AND (max_walltime >= 300 OR max_walltime <= 0)'}
+[ADMISSION RULE] Job properties : (GPU = 'GTX 980') AND maintenance = 'NO
+Generate a job key...
+OAR_JOB_ID=1930362
+Interactive mode: waiting...
+Starting...
+
+Connect to OAR job 1930362 via the node graphique-5.nancy.grid5000.fr
+user@graphique-5:~/usingGrid5000$ source .bashrc 
+(base) user@graphique-5:~/usingGrid5000$ conda activate pytorch-env
+(pytorch-env) user@graphique-5:~/usingGrid5000$ python pytorch_probe_gpus.py 
+GeForce GTX 980 detected on device 0
+GeForce GTX 980 detected on device 1
+(pytorch-env) user@graphique-5:~/usingGrid5000$ #Got wanted GPUs!
+```
 
 ## Other useful commands
 To transfer a file from the machines to your local PC via secure copy:

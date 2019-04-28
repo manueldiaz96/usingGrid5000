@@ -5,4 +5,4 @@ NC='\033[0m' # No Color
 printf " ${RED}Remember to source bashrc!${NC}\n"
 printf " ${GREEN}Remember to activate the conda env!${NC}\n"
 printf " ${L_BLUE}Asking for job with $2 ${NC}\n"
-oarsub -q production -p "GPU = $2" -l "nodes=1,walltime=$1" -I
+oarsub -q default -p "GPU = '$2'" -l "nodes=1,walltime=$1" -I
