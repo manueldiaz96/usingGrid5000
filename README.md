@@ -25,6 +25,7 @@ There are two main types of accounts:
 Once you have chosen a cluster, you can log in into your account via: `ssh username@access.grid5000.fr`, to then ssh to the site that has the cluster you want to work in, e.g. `ssh nancy / ssh lille / ssh lyon`. Now you should be able to access your home directory on any of the Grid5000's clusters.
 
 ## Third step: Set up your work environment
+**Note about storage:** Default storage per user on Grid5000 is **25GB**, but if you need more storage, you can request a bigger quota on the Grid5000 api [user storage tab](https://api.grid5000.fr/stable/users/#mystorage) (login needed).
 ### Install Miniconda
 The steps listed here are based on [this tutorial](https://www.grid5000.fr/w/User:Ibada/Tuto_Deep_Learning#with_anaconda) by the user Ibada. This guide only covers the setting up process with Anaconda, Miniconda specifically since is lighter. All commands are executed from the user's home directory.
 
@@ -46,6 +47,7 @@ Finally, just copy the `.bashrc` script available on this repository and change 
 user@site:~$ source .bashrc
 (base) user@site:~$ #Environment now 
 ```
+##
 ### Create the virtual environment and Install the needed libraries
 With Miniconda set up, you can now create environments for your projects via:
 ```
