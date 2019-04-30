@@ -86,7 +86,7 @@ GeForce GTX 1080 Ti detected on device 1
 Once you are in a job, you can use the available hardware on that specific cluster for your computations.
 
 ### Ask for an specific GPU 
-Since some clusters have more than one type of GPU, using the [ask_for_job_input_time_and_gpu.sh](https://github.com/manueldiaz96/usingGrid5000/blob/master/ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh) you can ask for a specific GPU on a cluster. This script takes as first argument the time in _hh:mm:ss_ format, and as second argument the wanted GPU name in 'quotes'. The names can be consulted in the OAR Properties on the Monika page of each site at the [status page of G5000](https://www.grid5000.fr/w/Status)(login needed).
+Since some clusters have more than one type of GPU, using the [ask_for_job_input_time_and_gpu.sh](https://github.com/manueldiaz96/usingGrid5000/blob/master/ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh) you can ask for a specific GPU on a cluster. This script takes as first argument the time in _hh:mm:ss_ format, and as second argument the wanted GPU name in 'quotes'. The names can be consulted in the OAR Properties on the Monika page of each site at the [status page of G5000](https://www.grid5000.fr/w/Status) (login needed).
 ```bash
 user@fnancy:~/usingGrid5000$ bash ask_for_job_scripts/ask_for_job_input_time_and_gpu.sh 00:05:00 'GTX 980'
  Remember to source bashrc!
@@ -121,10 +121,13 @@ To transfer a file from your PC to a cluster via secure copy:
 user@localPC:~$ scp /home/user/directory/file.py user@access.grid5000.fr:site/path_from_home/file.py #for single files
 user@localPC:~$ scp -r /home/user/directory/ user@access.grid5000.fr:site/path_from_home/directory #for directories
 ```
-Commands to check or delete  jobs:
+Commands to check or delete jobs:
 ```bash
 user@site:~$ oarstat -u #check if you have any jobs running on this site and the state of them
 user@site:~$ oardel JOB_ID #delete any job you no longer need by giving the JOB_ID number
 ```
-
+Check your storage:
+```bash
+user@site:~$ du -h --max-depth=1 | sort -hr
+```
 For more in-depth usage of Grid5000 for Deep Learning, [Check Ibada's tutorial](https://www.grid5000.fr/w/User:Ibada/Tuto_Deep_Learning)
