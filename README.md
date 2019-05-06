@@ -7,6 +7,7 @@ This guide is mainly focused on how to use Grid5000 as an alternative to process
 There are two main types of accounts:
  - **Academics from France**: Those currently working on any research project in France or Academics abroad working on a collaboration with academics in France (_The former need to ask to their french collaborators for details_).
  - **Open Access Program**: People who are not on a collaboration can request a lower priority account. Private companies interested need to contact Gird5000's executive committee members.
+ 
 **For this part you will need to give your ssh public key. If you have not generated one, [follow this tutorial to generate one](https://www.grid5000.fr/w/SSH#Overview)**
 
 ## Second step: Choose a cluster to work in
@@ -26,7 +27,7 @@ Once you have chosen a cluster, you can log in into your account via: `ssh usern
 ## Third step: Set up your work environment
 **Note about storage:** Default storage per user on Grid5000 is **25GB**, but if you need more storage, you can request a bigger quota on the Grid5000 api [user storage tab](https://api.grid5000.fr/stable/users/#mystorage) (login needed).
 ### Install Miniconda
-The steps listed here are based on [this tutorial](https://www.grid5000.fr/w/User:Ibada/Tuto_Deep_Learning#with_anaconda) by the user Ibada. This guide only covers the setting up process with Anaconda, Miniconda specifically since is lighter. All commands are executed from the user's home directory.
+The steps listed here are based on [this tutorial](https://www.grid5000.fr/w/User:Ibada/Tuto_Deep_Learning#with_anaconda) (login needed) by the user Ibada. This guide only covers the setting up process with Anaconda, Miniconda specifically since is lighter. All commands are executed from the user's home directory.
 
 First, download Miniconda depending on the version of Python you will be working with. If you are working with Python 2.7, change the version of Miniconda to 2 instead of 3.
 
@@ -55,7 +56,7 @@ conda create --name env
 And install conda supported libraries and packages via [Anaconda Cloud](https://anaconda.org/anaconda/), [Conda Forge](https://anaconda.org/conda-forge/) or any other channel you want.
 
 ## Fourth step: Ask for compute time on the GPU clusters
-You can check [here](https://www.grid5000.fr/w/Status) the status of each of the clusters' availability, to see if your desired hardware is busy or not.
+You can check [here](https://www.grid5000.fr/w/Status) (login needed) the status of each of the clusters' availability, to see if your desired hardware is busy or not.
 
 [These bash scripts](https://github.com/manueldiaz96/usingGrid5000/tree/master/ask_for_job_scripts) facilitate the process of asking for jobs. Both are mainly using on the `oarsub` commands and using the **_default_** queue, check the node's hardware table to see which queue the GPUs you want to use are in:
  - `ask_for_job_fixed_time.sh` has a fixed job time, can be used to quickly test if the environment recognizes the cluster's GPUs
