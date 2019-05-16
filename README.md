@@ -41,7 +41,7 @@ user@site:~$ bash Miniconda3-latest-Linux-x86_64.sh
 ```
 Here, the instalation guide will prompt you to choose the path where Miniconda will be installed. Also, it will prompt you to choose if the conda environment starts with bash (default is no).
 
-Finally, just copy the `.bashrc` script available on this repository and change **user** for your username on lines 112, 116, 117, 120. It contains many useful features to personalize your bash experience, **but more importantly** if you chose the default option for conda to be disabled, sourcing this script allows you to activate the conda environment.
+Finally, just copy the `.bashrc` script available on this repository and change **user** for your username on lines 119, 123, 124, 127. It contains many useful features to personalize your bash experience, **but more importantly** if you chose the default option for conda to be disabled, sourcing this script allows you to activate the conda environment.
 
 ```bash
 user@site:~$ source .bashrc
